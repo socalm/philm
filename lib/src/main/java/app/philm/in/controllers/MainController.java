@@ -25,6 +25,7 @@ import android.content.Intent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import app.philm.in.Constants;
 import app.philm.in.Display;
 import app.philm.in.model.PhilmUserProfile;
 import app.philm.in.model.WatchingMovie;
@@ -144,8 +145,21 @@ public class MainController extends BaseUiController<MainController.MainControll
     }
 
     @Override
+    public void onSync() {
+        if (Constants.DEBUG) {
+            mLogger.d(LOG_TAG, "onSync");
+        }
+
+        mUserController.onSync();
+        mMovieController.onSync();
+        mAboutController.onSync();
+    }
+
+    @Override
     public boolean handleIntent(Intent intent) {
-        mLogger.d(LOG_TAG, "handleIntent: " + intent);
+        if (Constants.DEBUG) {
+            mLogger.d(LOG_TAG, "handleIntent: " + intent);
+        }
 
 
 
